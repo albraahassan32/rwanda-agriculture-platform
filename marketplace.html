@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>السوق الإلكتروني - منصة رواندا الزراعية</title>
+<style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-dark: #1b5e20;
+            --secondary-color: #f9a825;
+            --secondary-light: #ffd95b;
+            --light-bg: #f1f8e9;
+            --dark-text: #333;
+            --light-text: #fff;
+            --accent: #8bc34a;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-text);
+        }
+        
+        /* Common Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+            font-weight: bold;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-light);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+        
+        /* Language Switcher */
+        .language-switcher {
+            position: relative;
+            margin-right: 20px;
+        }
+        
+        .current-language {
+            display: flex;
+            align-items: center;
+            color: var(--light-text);
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: var(--border-radius);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .current-language:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .language-icon {
+            margin-left: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .languages-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            min-width: 150px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .language-switcher:hover .languages-dropdown {
+            display: block;
+        }
+        
+        .language-option {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: var(--dark-text);
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .language-option:last-child {
+            border-bottom: none;
+        }
+        
+        .language-option:hover {
+            background-color: var(--light-bg);
+        }
+        
+        .language-flag {
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            border-radius: 3px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .logo-icon {
+            color: var(--secondary-color);
+            margin-left: 10px;
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-right: 1.5rem;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            display: block;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 1;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-text) !important;
+            padding: 0.7rem 1rem;
+            display: block;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light-bg);
+        }
+        
+        /* Auth buttons */
+        .auth-buttons {
+            display: flex;
+        }
+        
+        .auth-buttons button, .auth-buttons a {
+            padding: 0.5rem 1rem;
+            margin-right: 1rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .login-btn {
+            background-color: transparent;
+            color: var(--light-text);
+            border: 1px solid var(--light-text);
+        }
+        
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .signup-btn {
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+        }
+        
+        .signup-btn:hover {
+            background-color: var(--secondary-light);
+        }
+        
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--light-text);
+        }
+        
+        /* Hero Section */
+        .marketplace-hero {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1598968693552-39a64f9e24f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--light-text);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .marketplace-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .marketplace-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        /* Marketplace Section */
+        .marketplace-section {
+            padding: 3rem 0;
+        }
+        
+        .marketplace-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .marketplace-filters {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .filter-select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            background-color: white;
+        }
+        
+        .search-bar {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 1rem;
+        }
+        
+        .search-btn {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            height: 200px;
+            background-color: #f5f5f5;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .product-card:nth-child(1) .product-img {
+            background-image: url('https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80');
+        }
+        
+        .product-card:nth-child(2) .product-img {
+            background-image: url('https://images.unsplash.com/photo-1566813916511-223ea7e4d4fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80');
+        }
+        
+        .product-card:nth-child(3) .product-img {
+            background-image: url('https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80');
+        }
+        
+        .product-card:nth-child(4) .product-img {
+            background-image: url('https://images.unsplash.com/photo-1588252303782-cb80119abd6d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80');
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .product-badge.organic {
+            background-color: #8bc34a;
+            color: white;
+        }
+        
+        .product-badge.featured {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .product-farm {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .farm-icon {
+            color: var(--primary-color);
+            margin-left: 0.5rem;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #
+.product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .action-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            gap: 0.5rem;
+        }
+        
+        .page-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: bold;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .page-link:hover,
+        .page-link.active {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+        
+        /* Featured Categories */
+        .featured-categories {
+            background-color: var(--light-bg);
+            padding: 4rem 0;
+        }
+        
+        .category-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .category-heading h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .category-heading p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .category-img {
+            height: 150px;
+            background-color: #f5f5f5;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .category-card:nth-child(1) .category-img {
+            background-image: url('https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80');
+        }
+        
+        .category-card:nth-child(2) .category-img {
+            background-image: url('https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80');
+        }
+        
+        .category-card:nth-child(3) .category-img {
+            background-image: url('https://images.unsplash.com/photo-1505692952047-1a78307da8f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80');
+        }
+        
+        .category-card:nth-child(4) .category-img {
+            background-image: url('https://images.unsplash.com/photo-1670502336733-8adaa4c25291?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80');
+        }
+        
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .category-card:hover .category-overlay {
+            background: linear-gradient(to bottom, rgba(46,125,50,0.3), rgba(46,125,50,0.8));
+        }
+        
+        .category-name {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        
+        .category-card:hover .category-name {
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--light-text);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: right;
+        }
+        
+        .footer-logo {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .footer-logo-icon {
+            color: var(--secondary-color);
+            margin-left: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            color: #ccc;
+            line-height: 1.7;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+            padding-right: 5px;
+        }
+        
+        .footer-newsletter p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 0.9rem;
+        }
+        
+        .newsletter-btn {
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+            padding: 0 1.5rem;
+            border: none;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-btn:hover {
+            background-color: var(--secondary-light);
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hamburger {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background-color: var(--primary-color);
+                width: 80%;
+                height: calc(100vh - 70px);
+                padding: 2rem;
+                z-index: 999;
+                transition: var(--transition);
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+            }
+            
+            .dropdown-content {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background-color: rgba(0,0,0,0.1);
+                padding: 1rem;
+                margin-top: 1rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            
+            .dropdown.active .dropdown-content {
+                max-height: 500px;
+            }
+            
+            .dropdown-content a {
+                color: var(--light-text) !important;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .auth-buttons {
+                margin-top: 2rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .auth-buttons button, .auth-buttons a {
+                width: 100%;
+                margin-right: 0;
+                text-align: center;
+            }
+            
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+<div class="header-container">
+<div class="logo">
+<span class="logo-icon">🌱</span>
+<span class="logo-text" data-lang="platform_name">رواندا الزراعية</span>
+</div>
+<div class="hamburger">☰</div>
+<nav>
+<ul>
+<li><a data-lang="nav_home" data-translate="nav_home" href="index.html">الرئيسية</a></li>
+<li class="dropdown">
+<a data-lang="nav_market" data-translate="nav_market" href="marketplace.html">السوق</a>
+<div class="dropdown-content">
+<a data-lang="nav_crops" href="#">المحاصيل</a>
+<a data-lang="nav_products" href="#">المنتجات الزراعية</a>
+<a data-lang="nav_equipment" href="#">المعدات</a>
+<a data-lang="nav_seeds" href="#">البذور والأسمدة</a>
+</div>
+</li>
+<li class="dropdown">
+<a data-lang="nav_export" href="#">التصدير</a>
+<div class="dropdown-content">
+<a data-lang="nav_opportunities" href="#">فرص التصدير</a>
+<a data-lang="nav_shipping" href="#">خدمات الشحن</a>
+<a data-lang="nav_certificates" href="#">الشهادات والتوثيق</a>
+<a data-lang="nav_guide" href="#">دليل التصدير</a>
+</div>
+</li>
+<li class="dropdown">
+<a data-lang="nav_resources" href="#">الموارد</a>
+<div class="dropdown-content">
+<a data-lang="nav_reports" href="#">تقارير السوق</a>
+<a data-lang="nav_extension" href="#">الإرشاد الزراعي</a>
+<a data-lang="nav_finance" href="#">التمويل الزراعي</a>
+<a data-lang="nav_regulations" href="#">القوانين واللوائح</a>
+</div>
+</li>
+<li><a data-lang="nav_about" href="#">عن المنصة</a></li>
+<li><a data-lang="nav_contact" href="#">اتصل بنا</a></li>
+</ul>
+</nav>
+<div class="header-right">
+<div class="language-switcher">
+<div class="current-language">
+<span data-lang="current_lang" data-translate="current_language_text">العربية</span>
+<span class="language-icon">🔽</span>
+</div>
+<div class="languages-dropdown">
+<a class="language-option" data-lang-code="ar" href="#">
+<img alt="Arabic" class="language-flag" src="icons/sd.png"/>
+<span>العربية</span>
+</a>
+<a class="language-option" data-lang-code="rw" href="#">
+<img alt="Kinyarwanda" class="language-flag" src="icons/rw.png"/>
+<span>Kinyarwanda</span>
+</a>
+<a class="language-option" data-lang-code="en" href="#">
+<img alt="English" class="language-flag" src="icons/gb.png"/>
+<span>English</span>
+</a>
+<a class="language-option" data-lang-code="fr" href="#">
+<img alt="French" class="language-flag" src="icons/fr.png"/>
+<span>Français</span>
+</a>
+</div>
+</div>
+<div class="auth-buttons">
+<button class="login-btn" data-lang="btn_login" data-translate="login_button">تسجيل الدخول</button>
+<button class="signup-btn" data-lang="btn_signup" data-translate="signup_button">إنشاء حساب</button>
+</div>
+</div>
+</div>
+</header>
+<section class="marketplace-hero">
+<h1 data-lang="marketplace_title">السوق الإلكتروني للمنتجات الزراعية الرواندية</h1>
+<p data-lang="marketplace_subtitle">استكشف مجموعة متنوعة من المنتجات الزراعية عالية الجودة مباشرة من المزارعين الروانديين. سواء كنت مستورداً أو مشترياً أو مستهلكاً، ستجد هنا كل ما تبحث عنه.</p>
+<button class="btn" data-lang="marketplace_cta">أضف منتجك للبيع</button>
+</section>
+<section class="marketplace-section">
+<div class="marketplace-container">
+<div class="marketplace-filters">
+<div class="search-bar">
+<input class="search-input" data-lang-placeholder="search_placeholder" placeholder="ابحث عن منتج..." type="text"/>
+<button class="search-btn" data-lang="search_btn">بحث</button>
+</div>
+<div class="filters-grid">
+<div class="filter-group">
+<label data-lang="filter_category" for="category">الفئة</label>
+<select class="filter-select" id="category">
+<option data-lang="filter_all_categories" value="">جميع الفئات</option>
+<option data-lang="filter_coffee" value="coffee">البن</option>
+<option data-lang="filter_tea" value="tea">الشاي</option>
+<option data-lang="filter_fruits" value="fruits">الفواكه</option>
+<option data-lang="filter_vegetables" value="vegetables">الخضروات</option>
+<option data-lang="filter_spices" value="spices">التوابل</option>
+<option data-lang="filter_grains" value="grains">الحبوب</option>
+</select>
+</div>
+<div class="filter-group">
+<label data-lang="filter_region" for="region">المنطقة</label>
+<select class="filter-select" id="region">
+<option data-lang="filter_all_regions" value="">جميع المناطق</option>
+<option data-lang="filter_eastern" value="eastern">المنطقة الشرقية</option>
+<option data-lang="filter_western" value="western">المنطقة الغربية</option>
+<option data-lang="filter_northern" value="northern">المنطقة الشمالية</option>
+<option data-lang="filter_southern" value="southern">المنطقة الجنوبية</option>
+<option data-lang="filter_kigali" value="kigali">كيغالي</option>
+</select>
+</div>
+<div class="filter-group">
+<label data-lang="filter_certification" for="certification">الشهادات</label>
+<select class="filter-select" id="certification">
+<option data-lang="filter_all_certifications" value="">جميع الشهادات</option>
+<option data-lang="filter_organic" value="organic">عضوي</option>
+<option data-lang="filter_fairtrade" value="fairtrade">تجارة عادلة</option>
+<option data-lang="filter_rainforest" value="rainforest">تحالف الغابات المطيرة</option>
+<option data-lang="filter_gmp" value="gmp">ممارسات التصنيع الجيدة</option>
+<option data-lang="filter_haccp" value="haccp">نظام تحليل المخاطر ونقاط التحكم الحرجة</option>
+</select>
+</div>
+<div class="filter-group">
+<label data-lang="filter_price" for="price">السعر</label>
+<select class="filter-select" id="price">
+<option data-lang="filter_all_prices" value="">جميع الأسعار</option>
+<option data-lang="filter_price_low" value="low">أقل من $1,000</option>
+<option data-lang="filter_price_mid" value="mid">$1,000 - $3,000</option>
+<option data-lang="filter_price_high" value="high">$3,000 - $5,000</option>
+<option data-lang="filter_price_premium" value="premium">أكثر من $5,000</option>
+</select>
+</div>
+</div>
+</div>
+<div class="products-grid">
+<div class="product-card">
+<div class="product-img">
+<span class="product-badge featured" data-lang="badge_featured">مميز</span>
+</div>
+<div class="product-content">
+<h3 class="product-title" data-lang="product1_title">بن عالي الجودة من روبيروي</h3>
+<div class="product-farm">
+<span class="farm-icon">👨‍🌾</span>
+<span data-lang="product1_farm">مزرعة كيفو الجبلية</span>
+</div>
+<p class="product-description" data-lang="product1_description">
+                            بن أرابيكا عالي الجودة من المرتفعات الغربية، معالج بطريقة الغسل. ذو نكهة فواكهية وحموضة متوازنة، حاصل على شهادة التجارة العادلة.
+                        </p>
+<div class="product-meta">
+<div class="product-price">$4,200 / <span data-lang="unit_ton">طن</span></div>
+<div class="product-actions">
+<button class="action-btn" title="أضف إلى المفضلة">❤️</button>
+<button class="action-btn" title="أضف إلى السلة">🛒</button>
+</div>
+</div>
+</div>
+</div>
+<div class="product-card">
+<div class="product-img">
+<span class="product-badge organic" data-lang="badge_organic">عضوي</span>
+</div>
+<div class="product-content">
+<h3 class="product-title" data-lang="product2_title">شاي أسود رواندي</h3>
+<div class="product-farm">
+<span class="farm-icon">👨‍🌾</span>
+<span data-lang="product2_farm">مزارع سوروا للشاي</span>
+</div>
+<p class="product-description" data-lang="product2_description">
+                            شاي أسود عضوي مزروع في مرتفعات نيونجوي. ذو نكهة قوية وعطرية، ومعالج يدوياً وفق معايير الجودة العالمية.
+                        </p>
+<div class="product-meta">
+<div class="product-price">$3,900 / <span data-lang="unit_ton">طن</span></div>
+<div class="product-actions">
+<button class="action-btn" title="أضف إلى المفضلة">❤️</button>
+<button class="action-btn" title="أضف إلى السلة">🛒</button>
+</div>
+</div>
+</div>
+</div>
+<div class="product-card">
+<div class="product-img">
+</div>
+<div class="product-content">
+<h3 class="product-title" data-lang="product3_title">أفوكادو هاس طازج</h3>
+<div class="product-farm">
+<span class="farm-icon">👨‍🌾</span>
+<span data-lang="product3_farm">تعاونية مزارعي الشرق</span>
+</div>
+<p class="product-description" data-lang="product3_description">
+                            أفوكادو هاس عالي الجودة من المنطقة الشرقية، مزروع بدون مبيدات حشرية. متوفر بأحجام مختلفة وجاهز للتصدير.
+                        </p>
+<div class="product-meta">
+<div class="product-price">$2,300 / <span data-lang="unit_ton">طن</span></div>
+<div class="product-actions">
+<button class="action-btn" title="أضف إلى المفضلة">❤️</button>
+<button class="action-btn" title="أضف إلى السلة">🛒</button>
+</div>
+</div>
+</div>
+</div>
+<div class="product-card">
+<div class="product-img">
+<span class="product-badge featured" data-lang="badge_featured">مميز</span>
+</div>
+<div class="product-content">
+<h3 class="product-title" data-lang="product4_title">فلفل حار نيونغوي</h3>
+<div class="product-farm">
+<span class="farm-icon">👨‍🌾</span>
+<span data-lang="product4_farm">مزرعة كاموي للتوابل</span>
+</div>
+<p class="product-description" data-lang="product4_description">
+                            فلفل حار من الأصناف النادرة المزروعة في منطقة نيونغوي، يتميز بحرارته المتوسطة ونكهته الفريدة التي تمزج بين الحلاوة والحدة.
+                        </p>
+<div class="product-meta">
+<div class="product-price">$5,600 / <span data-lang="unit_ton">طن</span></div>
+<div class="product-actions">
+<button class="action-btn" title="أضف إلى المفضلة">❤️</button>
+<button class="action-btn" title="أضف إلى السلة">🛒</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pagination">
+<a class="page-link active" href="#">1</a>
+<a class="page-link" href="#">2</a>
+<a class="page-link" href="#">3</a>
+<a class="page-link" href="#">4</a>
+<a class="page-link" href="#">5</a>
+<a class="page-link" href="#">❯</a>
+</div>
+</div>
+</section>
+<section class="featured-categories">
+<div class="category-heading">
+<h2 data-lang="categories_title">تصفح حسب الفئة</h2>
+<p data-lang="categories_subtitle">استكشف مجموعة متنوعة من المنتجات الزراعية الرواندية المقسمة حسب الفئات</p>
+</div>
+<div class="categories-grid">
+<div class="category-card">
+<div class="category-img">
+<div class="category-overlay">
+<h3 class="category-name" data-lang="category1">البن والشاي</h3>
+</div>
+</div>
+</div>
+<div class="category-card">
+<div class="category-img">
+<div class="category-overlay">
+<h3 class="category-name" data-lang="category2">الفواكه الاستوائية</h3>
+</div>
+</div>
+</div>
+<div class="category-card">
+<div class="category-img">
+<div class="category-overlay">
+<h3 class="category-name" data-lang="category3">الخضروات</h3>
+</div>
+</div>
+</div>
+<div class="category-card">
+<div class="category-img">
+<div class="category-overlay">
+<h3 class="category-name" data-lang="category4">التوابل والبهارات</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section style="background-color: var(--primary-color); padding: 4rem 0; text-align: center; color: var(--light-text);">
+<div style="max-width: 900px; margin: 0 auto; padding: 0 2rem;">
+<h2 data-lang="seller_section_title" style="font-size: 2rem; margin-bottom: 1.5rem;">هل أنت مزارع أو منتج؟</h2>
+<p data-lang="seller_section_title" font-size:="" margin-bottom:="" style="font-size: 1.2rem; margin-bottom: 2rem;
+&lt;h2 style=">هل أنت مزارع أو منتج؟
+            </p><p data-lang="seller_section_text" style="font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.7;">انضم إلى منصتنا اليوم وقم بعرض منتجاتك للمشترين من جميع أنحاء العالم. نوفر لك الأدوات والدعم اللازم للوصول إلى أسواق جديدة وزيادة مبيعاتك.</p>
+<div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+<button class="btn" data-lang="btn_register_seller" style="background-color: var(--secondary-color);">سجل كبائع</button>
+<button class="btn" data-lang="btn_learn_selling" style="background-color: white; color: var(--primary-color);">تعرف على كيفية البيع</button>
+</div>
+</div>
+</section>
+<footer>
+<div class="footer-container">
+<div class="footer-content">
+<div class="footer-about">
+<div class="footer-logo">
+<span class="footer-logo-icon">🌱</span>
+<span data-lang="platform_name">رواندا الزراعية</span>
+</div>
+<p data-lang="footer_about">منصة رقمية متكاملة تهدف إلى تمكين المزارعين الروانديين من الوصول إلى الأسواق العالمية بشكل مباشر، وتسهيل عمليات التصدير، وتعظيم الأرباح.</p>
+<div class="social-links">
+<a class="social-link" href="#">𝕏</a>
+<a class="social-link" href="#">ƒ</a>
+<a class="social-link" href="#">𝕀</a>
+<a class="social-link" href="#">𝕝</a>
+</div>
+</div>
+<div class="footer-section">
+<h3 data-lang="footer_quick_links">روابط سريعة</h3>
+<ul>
+<li><a data-lang="nav_home" href="index.html">الرئيسية</a></li>
+<li><a data-lang="nav_market" href="marketplace.html">السوق</a></li>
+<li><a data-lang="nav_export" href="#">التصدير</a></li>
+<li><a data-lang="nav_resources" href="#">الموارد</a></li>
+<li><a data-lang="nav_about" href="#">عن المنصة</a></li>
+<li><a data-lang="nav_contact" href="#">اتصل بنا</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3 data-lang="footer_services">الخدمات</h3>
+<ul>
+<li><a data-lang="footer_service1" href="#">التداول الإلكتروني</a></li>
+<li><a data-lang="footer_service2" href="#">خدمات التصدير</a></li>
+<li><a data-lang="footer_service3" href="#">الشحن والخدمات اللوجستية</a></li>
+<li><a data-lang="footer_service4" href="#">التمويل الزراعي</a></li>
+<li><a data-lang="footer_service5" href="#">شهادات الجودة</a></li>
+<li><a data-lang="footer_service6" href="#">التحليلات والتقارير</a></li>
+</ul>
+</div>
+<div class="footer-newsletter">
+<h3 data-lang="footer_newsletter">النشرة الإخبارية</h3>
+<p data-lang="footer_newsletter_text">اشترك في نشرتنا الإخبارية للحصول على آخر المستجدات حول فرص التصدير واتجاهات السوق.</p>
+<div class="newsletter-form">
+<input class="newsletter-input" data-lang-placeholder="newsletter_placeholder" placeholder="بريدك الإلكتروني" type="email"/>
+<button class="newsletter-btn" data-lang="btn_subscribe">اشترك</button>
+</div>
+</div>
+</div>
+<div class="copyright">
+<p data-lang="copyright">© 2025 منصة رواندا الزراعية. جميع الحقوق محفوظة.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Mobile Menu Toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // Product Card Effects
+        const productCards = document.querySelectorAll('.product-card');
+        
+        productCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+                card.style.boxShadow = '0 15px 30px rgba(0,0,0,0.1)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            });
+        });
+        
+        // Filter Functionality
+        const filters = document.querySelectorAll('.filter-select');
+        
+        filters.forEach(filter => {
+            filter.addEventListener('change', () => {
+                // This would be connected to backend filtering in a real implementation
+                console.log(`Filter ${filter.id} changed to ${filter.value}`);
+                // For demo, we could add a loading effect here
+                document.querySelector('.products-grid').style.opacity = '0.7';
+                
+                setTimeout(() => {
+                    document.querySelector('.products-grid').style.opacity = '1';
+                }, 500);
+            });
+        });
+        
+        // Search Functionality
+        const searchForm = document.querySelector('.search-bar');
+        const searchInput = document.querySelector('.search-input');
+        
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // This would be connected to backend search in a real implementation
+            console.log(`Searching for: ${searchInput.value}`);
+            // For demo, we could add a loading effect here
+            document.querySelector('.products-grid').style.opacity = '0.7';
+            
+            setTimeout(() => {
+                document.querySelector('.products-grid').style.opacity = '1';
+            }, 500);
+        });
+        
+        // Language Switcher
+        const translations = {
+            'ar': {
+                // Platform name
+                'platform_name': 'رواندا الزراعية',
+                
+                // Navigation
+                'nav_home': 'الرئيسية',
+                'nav_market': 'السوق',
+                'nav_crops': 'المحاصيل',
+                'nav_products': 'المنتجات الزراعية',
+                'nav_equipment': 'المعدات',
+                'nav_seeds': 'البذور والأسمدة',
+                'nav_export': 'التصدير',
+                'nav_opportunities': 'فرص التصدير',
+                'nav_shipping': 'خدمات الشحن',
+                'nav_certificates': 'الشهادات والتوثيق',
+                'nav_guide': 'دليل التصدير',
+                'nav_resources': 'الموارد',
+                'nav_reports': 'تقارير السوق',
+                'nav_extension': 'الإرشاد الزراعي',
+                'nav_finance': 'التمويل الزراعي',
+                'nav_regulations': 'القوانين واللوائح',
+                'nav_about': 'عن المنصة',
+                'nav_contact': 'اتصل بنا',
+                
+                // Buttons
+                'btn_login': 'تسجيل الدخول',
+                'btn_signup': 'إنشاء حساب',
+                'current_lang': 'العربية',
+                'btn_subscribe': 'اشترك',
+                'btn_register_seller': 'سجل كبائع',
+                'btn_learn_selling': 'تعرف على كيفية البيع',
+                
+                // Marketplace Hero Section
+                'marketplace_title': 'السوق الإلكتروني للمنتجات الزراعية الرواندية',
+                'marketplace_subtitle': 'استكشف مجموعة متنوعة من المنتجات الزراعية عالية الجودة مباشرة من المزارعين الروانديين. سواء كنت مستورداً أو مشترياً أو مستهلكاً، ستجد هنا كل ما تبحث عنه.',
+                'marketplace_cta': 'أضف منتجك للبيع',
+                
+                // Filters
+                'search_placeholder': 'ابحث عن منتج...',
+                'search_btn': 'بحث',
+                'filter_category': 'الفئة',
+                'filter_all_categories': 'جميع الفئات',
+                'filter_coffee': 'البن',
+                'filter_tea': 'الشاي',
+                'filter_fruits': 'الفواكه',
+                'filter_vegetables': 'الخضروات',
+                'filter_spices': 'التوابل',
+                'filter_grains': 'الحبوب',
+                'filter_region': 'المنطقة',
+                'filter_all_regions': 'جميع المناطق',
+                'filter_eastern': 'المنطقة الشرقية',
+                'filter_western': 'المنطقة الغربية',
+                'filter_northern': 'المنطقة الشمالية',
+                'filter_southern': 'المنطقة الجنوبية',
+                'filter_kigali': 'كيغالي',
+                'filter_certification': 'الشهادات',
+                'filter_all_certifications': 'جميع الشهادات',
+                'filter_organic': 'عضوي',
+                'filter_fairtrade': 'تجارة عادلة',
+                'filter_rainforest': 'تحالف الغابات المطيرة',
+                'filter_gmp': 'ممارسات التصنيع الجيدة',
+                'filter_haccp': 'نظام تحليل المخاطر ونقاط التحكم الحرجة',
+                'filter_price': 'السعر',
+                'filter_all_prices': 'جميع الأسعار',
+                'filter_price_low': 'أقل من $1,000',
+                'filter_price_mid': '$1,000 - $3,000',
+                'filter_price_high': '$3,000 - $5,000',
+                'filter_price_premium': 'أكثر من $5,000',
+                
+                // Products
+                'badge_featured': 'مميز',
+                'badge_organic': 'عضوي',
+                'unit_ton': 'طن',
+                'product1_title': 'بن عالي الجودة من روبيروي',
+                'product1_farm': 'مزرعة كيفو الجبلية',
+                'product1_description': 'بن أرابيكا عالي الجودة من المرتفعات الغربية، معالج بطريقة الغسل. ذو نكهة فواكهية وحموضة متوازنة، حاصل على شهادة التجارة العادلة.',
+                'product2_title': 'شاي أسود رواندي',
+                'product2_farm': 'مزارع سوروا للشاي',
+                'product2_description': 'شاي أسود عضوي مزروع في مرتفعات نيونجوي. ذو نكهة قوية وعطرية، ومعالج يدوياً وفق معايير الجودة العالمية.',
+                'product3_title': 'أفوكادو هاس طازج',
+                'product3_farm': 'تعاونية مزارعي الشرق',
+                'product3_description': 'أفوكادو هاس عالي الجودة من المنطقة الشرقية، مزروع بدون مبيدات حشرية. متوفر بأحجام مختلفة وجاهز للتصدير.',
+                'product4_title': 'فلفل حار نيونغوي',
+                'product4_farm': 'مزرعة كاموي للتوابل',
+                'product4_description': 'فلفل حار من الأصناف النادرة المزروعة في منطقة نيونغوي، يتميز بحرارته المتوسطة ونكهته الفريدة التي تمزج بين الحلاوة والحدة.',
+                
+                // Categories Section
+                'categories_title': 'تصفح حسب الفئة',
+                'categories_subtitle': 'استكشف مجموعة متنوعة من المنتجات الزراعية الرواندية المقسمة حسب الفئات',
+                'category1': 'البن والشاي',
+                'category2': 'الفواكه الاستوائية',
+                'category3': 'الخضروات',
+                'category4': 'التوابل والبهارات',
+                
+                // Seller Section
+                'seller_section_title': 'هل أنت مزارع أو منتج؟',
+                'seller_section_text': 'انضم إلى منصتنا اليوم وقم بعرض منتجاتك للمشترين من جميع أنحاء العالم. نوفر لك الأدوات والدعم اللازم للوصول إلى أسواق جديدة وزيادة مبيعاتك.',
+                
+                // Footer
+                'footer_about': 'منصة رقمية متكاملة تهدف إلى تمكين المزارعين الروانديين من الوصول إلى الأسواق العالمية بشكل مباشر، وتسهيل عمليات التصدير، وتعظيم الأرباح.',
+                'footer_quick_links': 'روابط سريعة',
+                'footer_services': 'الخدمات',
+                'footer_service1': 'التداول الإلكتروني',
+                'footer_service2': 'خدمات التصدير',
+                'footer_service3': 'الشحن والخدمات اللوجستية',
+                'footer_service4': 'التمويل الزراعي',
+                'footer_service5': 'شهادات الجودة',
+                'footer_service6': 'التحليلات والتقارير',
+                'footer_newsletter': 'النشرة الإخبارية',
+                'footer_newsletter_text': 'اشترك في نشرتنا الإخبارية للحصول على آخر المستجدات حول فرص التصدير واتجاهات السوق.',
+                'newsletter_placeholder': 'بريدك الإلكتروني',
+                'copyright': '&copy; 2025 منصة رواندا الزراعية. جميع الحقوق محفوظة.'
+            },
+            'rw': {
+                // Platform name
+                'platform_name': 'Ubuhinzi mu Rwanda',
+                
+                // Navigation
+                'nav_home': 'Ahabanza',
+                'nav_market': 'Isoko',
+                'nav_crops': 'Ibihingwa',
+                'nav_products': 'Ibikomoka ku buhinzi',
+                'nav_equipment': 'Ibikoresho',
+                'nav_seeds': 'Imbuto n\'ifumbire',
+                'nav_export': 'Kohereza mu mahanga',
+                'nav_opportunities': 'Amahirwe yo kohereza',
+                'nav_shipping': 'Serivisi zo gutwara ibicuruzwa',
+                'nav_certificates': 'Ibyangombwa n\'icyemezo',
+                'nav_guide': 'Umuyoboro w\'ibyo kohereza',
+                'nav_resources': 'Ibikoresho',
+                'nav_reports': 'Raporo z\'isoko',
+                'nav_extension': 'Inyigisho z\'ubuhinzi',
+                'nav_finance': 'Imari y\'ubuhinzi',
+                'nav_regulations': 'Amategeko n\'amabwiriza',
+                'nav_about': 'Ibyerekeye urubuga',
+                'nav_contact': 'Twandikire',
+                
+                // Buttons
+                'btn_login': 'Injira',
+                'btn_signup': 'Iyandikishe',
+                'current_lang': 'Kinyarwanda',
+                'btn_subscribe': 'Iyandikishe',
+                'btn_register_seller': 'Iyandikishe nk\'umucuruzi',
+                'btn_learn_selling': 'Menya uko ugurisha',
+                
+                // Marketplace Hero Section
+                'marketplace_title': 'Isoko ry\'ibihingwa byo mu Rwanda',
+                'marketplace_subtitle': 'Reba ibihingwa byiza bikomoka ku bahinzi bo mu Rwanda. Waba uri umucuruzi cyangwa umugurisha, hano wabona icyo ushaka.',
+                'marketplace_cta': 'Gushyira igihingwa cyawe ku isoko',
+                
+                // Filters
+                'search_placeholder': 'Shaka igihingwa...',
+                'search_btn': 'Shaka',
+                'filter_category': 'Icyiciro',
+                'filter_all_categories': 'Ibyiciro byose',
+                'filter_coffee': 'Ikawa',
+                'filter_tea': 'Icyayi',
+                'filter_fruits': 'Imbuto',
+                'filter_vegetables': 'Imboga',
+                'filter_spices': 'Ibirungo',
+                'filter_grains': 'Ibinyampeke',
+                'filter_region': 'Akarere',
+                'filter_all_regions': 'Uturere twose',
+                'filter_eastern': 'Iburasirazuba',
+                'filter_western': 'Iburengerazuba',
+                'filter_northern': 'Amajyaruguru',
+                'filter_southern': 'Amajyepfo',
+                'filter_kigali': 'Kigali',
+                'filter_certification': 'Ibyemezo',
+                'filter_all_certifications': 'Ibyemezo byose',
+                'filter_organic': 'Organic',
+                'filter_fairtrade': 'Fair Trade',
+                'filter_rainforest': 'Rainforest Alliance',
+                'filter_gmp': 'GMP',
+                'filter_haccp': 'HACCP',
+                'filter_price': 'Igiciro',
+                'filter_all_prices': 'Ibiciro byose',
+                'filter_price_low': 'Munsi ya $1,000',
+                'filter_price_mid': '$1,000 - $3,000',
+                'filter_price_high': '$3,000 - $5,000',
+                'filter_price_premium': 'Hejuru ya $5,000',
+                
+                // Products
+                'badge_featured': 'Indashyikirwa',
+                'badge_organic': 'Organic',
+                'unit_ton': 'toni',
+                'product1_title': 'Ikawa nziza yo Ruberoyi',
+                'product1_farm': 'Uruganda rwa Kivu',
+                'product1_description': 'Ikawa nziza yo mu misozi ya Ruberoyi. Ifite uburyohe bwihariye kandi yemejwe na Fair Trade.',
+                'product2_title': 'Icyayi cy\'umukara cyo mu Rwanda',
+                'product2_farm': 'Uruganda rwa Sorwathe',
+                'product2_description': 'Icyayi cy\'umukara cyemejwe na Organic kivuye mu misozi ya Nyungwe. Gifite uburyohe bwiza kandi cyatunganyijwe ku buryo bwa kijyambere.',
+                'product3_title': 'Avoka Hass Itaraba',
+                'product3_farm': 'Amakoperative y\'Iburasirazuba',
+                'product3_description': 'Avoka Hass nziza iva mu Burasirazuba bwa Rwanda, irahingwa nta muti wakoreshejwe. Ibonetse mu ngano zitandukanye kandi yiteguye koherezwa hanze.',
+                'product4_title': 'Urusenda rwo Nyungwe',
+                'product4_farm': 'Uruganda rw\'Ibirungo rwa Kamoi',
+                'product4_description': 'Urusenda rwo mu bwoko budasanzwe ruhingwa mu karere ka Nyungwe, rufite ubukarishe buciriritse n\'uburyohe bwihariye bwunganiye ubusharire.',
+                
+                // Categories Section
+                'categories_title': 'Reba mu byiciro',
+                'categories_subtitle': 'Reba ibicuruzwa bitandukanye bikomoka mu Rwanda bitondetse mu byiciro',
+                'category1': 'Ikawa n\'Icyayi',
+                'category2': 'Imbuto zo mu birere bishyushye',
+                'category3': 'Imboga',
+                'category4': 'Ibirungo',
+                
+                // Seller Section
+                'seller_section_title': 'Uri umuhinzi cyangwa umukozi mu buhinzi?',
+                'seller_section_text': 'Iyandikishe ku rubuga rwacu none ugurire abaguzi bo hirya no hino ku isi. Dukugezaho ibikoresho n\'ubufasha ukeneye kugira ngo ugere ku masoko mashya kandi wongere ubucuruzi bwawe.',
+                
+                // Footer
+                'footer_about': 'Urubuga koranabuhanga rwuzuye rugamije gufasha abahinzi b\'Abanyarwanda kugera ku masoko mpuzamahanga, korohereza kohereza ibicuruzwa hanze y\'igihugu, no kongera inyungu zabo.',
+                'footer_quick_links': 'Aho wagana vuba',
+                'footer_services': 'Serivisi',
+                'footer_service1': 'Ubucuruzi koranabuhanga',
+                'footer_service2': 'Serivisi zo kohereza mu mahanga',
+                'footer_service3': 'Gutwara n\'ibindi bikoresho',
+                'footer_service4': 'Imari mu by\'ubuhinzi',
+                'footer_service5': 'Ibyemezo by\'ubuziranenge',
+                'footer_service6': 'Gusesengura no gutanga raporo',
+                'footer_newsletter': 'Amakuru mashya',
+                'footer_newsletter_text': 'Iyandikishe kugira ngo uhabwe amakuru mashya y\'amahirwe yo kohereza mu mahanga n\'imikorere y\'isoko.',
+                'newsletter_placeholder': 'Imeyili yawe',
+                'copyright': '&copy; 2025 Ubuhinzi mu Rwanda. Uburenganzira bwose bwihariwe.'
+            },
+            'en': {
+                // Platform name
+                'platform_name': 'Rwanda Agriculture',
+                
+                // Navigation
+                'nav_home': 'Home',
+                'nav_market': 'Market',
+                'nav_crops': 'Crops',
+                'nav_products': 'Agricultural Products',
+                'nav_equipment': 'Equipment',
+                'nav_seeds': 'Seeds & Fertilizers',
+                'nav_export': 'Export',
+                'nav_opportunities': 'Export Opportunities',
+                'nav_shipping': 'Shipping Services',
+                'nav_certificates': 'Certificates & Documentation',
+                'nav_guide': 'Export Guide',
+                'nav_resources': 'Resources',
+                'nav_reports': 'Market Reports',
+                'nav_extension': 'Agricultural Extension',
+                'nav_finance': 'Agricultural Finance',
+                'nav_regulations': 'Laws & Regulations',
+                'nav_about': 'About the Platform',
+                'nav_contact': 'Contact Us',
+                
+                // Buttons
+                'btn_login': 'Login',
+                'btn_signup': 'Sign Up',
+                'current_lang': 'English',
+                'btn_subscribe': 'Subscribe',
+                'btn_register_seller': 'Register as Seller',
+                'btn_learn_selling': 'Learn How to Sell',
+                
+                // Marketplace Hero Section
+                'marketplace_title': 'Electronic Marketplace for Rwandan Agricultural Products',
+                'marketplace_subtitle': 'Explore a diverse range of high-quality agricultural products directly from Rwandan farmers. Whether you\'re an importer, buyer, or consumer, you\'ll find everything you\'re looking for here.',
+                'marketplace_cta': 'Add Your Product for Sale',
+                
+                // Filters
+                'search_placeholder': 'Search for a product...',
+                'search_btn': 'Search',
+                'filter_category': 'Category',
+                'filter_all_categories': 'All Categories',
+                'filter_coffee': 'Coffee',
+                'filter_tea': 'Tea',
+                'filter_fruits': 'Fruits',
+                'filter_vegetables': 'Vegetables',
+                'filter_spices': 'Spices',
+                'filter_grains': 'Grains',
+                'filter_region': 'Region',
+                'filter_all_regions': 'All Regions',
+                'filter_eastern': 'Eastern Region',
+                'filter_western': 'Western Region',
+                'filter_northern': 'Northern Region',
+                'filter_southern': 'Southern Region',
+                'filter_kigali': 'Kigali',
+                'filter_certification': 'Certification',
+                'filter_all_certifications': 'All Certifications',
+                'filter_organic': 'Organic',
+                'filter_fairtrade': 'Fair Trade',
+                'filter_rainforest': 'Rainforest Alliance',
+                'filter_gmp': 'Good Manufacturing Practices',
+                'filter_haccp': 'HACCP',
+                'filter_price': 'Price',
+                'filter_all_prices': 'All Prices',
+                'filter_price_low': 'Under $1,000',
+                'filter_price_mid': '$1,000 - $3,000',
+                'filter_price_high': '$3,000 - $5,000',
+                'filter_price_premium': 'Over $5,000',
+                
+                // Products
+                'badge_featured': 'Featured',
+                'badge_organic': 'Organic',
+                'unit_ton': 'ton',
+                'product1_title': 'Premium Coffee from Ruberoyi',
+                'product1_farm': 'Kivu Mountain Farm',
+                'product1_description': 'High-quality Arabica coffee from the western highlands, processed using the washing method. It has a fruity flavor and balanced acidity, certified by Fair Trade.',
+                'product2_title': 'Rwandan Black Tea',
+                'product2_farm': 'Sorwa Tea Farms',
+                'product2_description': 'Organic black tea grown in the Nyungwe highlands. It has a strong and aromatic flavor, and is manually processed according to international quality standards.',
+                'product3_title': 'Fresh Hass Avocado',
+                'product3_farm': 'Eastern Farmers Cooperative',
+                'product3_description': 'High-quality Hass avocado from the Eastern region, grown without pesticides. Available in different sizes and ready for export.',
+                'product4_title': 'Nyungwe Hot Pepper',
+                'product4_farm': 'Kamoi Spice Farm',
+                'product4_description': 'Hot pepper from rare varieties grown in the Nyungwe region, characterized by its medium heat and unique flavor that blends sweetness and spiciness.',
+                
+                // Categories Section
+                'categories_title': 'Browse by Category',
+                'categories_subtitle': 'Explore a variety of Rwandan agricultural products categorized by type',
+                'category1': 'Coffee & Tea',
+                'category2': 'Tropical Fruits',
+                'category3': 'Vegetables',
+                'category4': 'Spices & Herbs',
+                
+                // Seller Section
+                'seller_section_title': 'Are You a Farmer or Producer?',
+                'seller_section_text': 'Join our platform today and showcase your products to buyers from around the world. We provide you with the tools and support needed to reach new markets and increase your sales.',
+                
+                // Footer
+                'footer_about': 'An integrated digital platform that aims to empower Rwandan farmers to access global markets directly, facilitate export operations, and maximize profits.',
+                'footer_quick_links': 'Quick Links',
+                'footer_services': 'Services',
+                'footer_service1': 'Electronic Trading',
+                'footer_service2': 'Export Services',
+                'footer_service3': 'Shipping & Logistics',
+                'footer_service4': 'Agricultural Finance',
+                'footer_service5': 'Quality Certificates',
+                'footer_service6': 'Analytics & Reports',
+                'footer_newsletter': 'Newsletter',
+                'footer_newsletter_text': 'Subscribe to our newsletter to receive the latest updates on export opportunities and market trends.',
+                'newsletter_placeholder': 'Your email',
+                'copyright': '&copy; 2025 Rwanda Agriculture. All rights reserved.'
+            },
+            'fr
+'fr': {
+                // Platform name
+                'platform_name': 'Agriculture Rwandaise',
+                
+                // Navigation
+                'nav_home': 'Accueil',
+                'nav_market': 'Marché',
+                'nav_crops': 'Cultures',
+                'nav_products': 'Produits Agricoles',
+                'nav_equipment': 'Équipement',
+                'nav_seeds': 'Semences et Engrais',
+                'nav_export': 'Exportation',
+                'nav_opportunities': 'Opportunités d\'Exportation',
+                'nav_shipping': 'Services d\'Expédition',
+                'nav_certificates': 'Certificats et Documentation',
+                'nav_guide': 'Guide d\'Exportation',
+                'nav_resources': 'Ressources',
+                'nav_reports': 'Rapports de Marché',
+                'nav_extension': 'Vulgarisation Agricole',
+                'nav_finance': 'Finance Agricole',
+                'nav_regulations': 'Lois et Règlements',
+                'nav_about': 'À Propos de la Plateforme',
+                'nav_contact': 'Contactez-Nous',
+                
+                // Buttons
+                'btn_login': 'Connexion',
+                'btn_signup': 'S\'inscrire',
+                'current_lang': 'Français',
+                'btn_subscribe': 'S\'abonner',
+                'btn_register_seller': 'S\'inscrire comme Vendeur',
+                'btn_learn_selling': 'Apprendre à Vendre',
+                
+                // Marketplace Hero Section
+                'marketplace_title': 'Marché Électronique pour les Produits Agricoles Rwandais',
+                'marketplace_subtitle': 'Explorez une gamme variée de produits agricoles de haute qualité directement des agriculteurs rwandais. Que vous soyez importateur, acheteur ou consommateur, vous trouverez ici tout ce que vous cherchez.',
+                'marketplace_cta': 'Ajouter Votre Produit à Vendre',
+                
+                // Filters
+                'search_placeholder': 'Rechercher un produit...',
+                'search_btn': 'Rechercher',
+                'filter_category': 'Catégorie',
+                'filter_all_categories': 'Toutes les Catégories',
+                'filter_coffee': 'Café',
+                'filter_tea': 'Thé',
+                'filter_fruits': 'Fruits',
+                'filter_vegetables': 'Légumes',
+                'filter_spices': 'Épices',
+                'filter_grains': 'Céréales',
+                'filter_region': 'Région',
+                'filter_all_regions': 'Toutes les Régions',
+                'filter_eastern': 'Région Est',
+                'filter_western': 'Région Ouest',
+                'filter_northern': 'Région Nord',
+                'filter_southern': 'Région Sud',
+                'filter_kigali': 'Kigali',
+                'filter_certification': 'Certification',
+                'filter_all_certifications': 'Toutes les Certifications',
+                'filter_organic': 'Biologique',
+                'filter_fairtrade': 'Commerce Équitable',
+                'filter_rainforest': 'Alliance Rainforest',
+                'filter_gmp': 'Bonnes Pratiques de Fabrication',
+                'filter_haccp': 'HACCP',
+                'filter_price': 'Prix',
+                'filter_all_prices': 'Tous les Prix',
+                'filter_price_low': 'Moins de $1,000',
+                'filter_price_mid': '$1,000 - $3,000',
+                'filter_price_high': '$3,000 - $5,000',
+                'filter_price_premium': 'Plus de $5,000',
+                
+                // Products
+                'badge_featured': 'En Vedette',
+                'badge_organic': 'Biologique',
+                'unit_ton': 'tonne',
+                'product1_title': 'Café Premium de Ruberoyi',
+                'product1_farm': 'Ferme Montagne Kivu',
+                'product1_description': 'Café Arabica de haute qualité des hauts plateaux occidentaux, traité selon la méthode de lavage. Il a une saveur fruitée et une acidité équilibrée, certifié Commerce Équitable.',
+                'product2_title': 'Thé Noir Rwandais',
+                'product2_farm': 'Fermes de Thé Sorwa',
+                'product2_description': 'Thé noir biologique cultivé dans les hauts plateaux de Nyungwe. Il a une saveur forte et aromatique, et est traité manuellement selon les normes de qualité internationales.',
+                'product3_title': 'Avocat Hass Frais',
+                'product3_farm': 'Coopérative des Agriculteurs de l\'Est',
+                'product3_description': 'Avocat Hass de haute qualité de la région Est, cultivé sans pesticides. Disponible en différentes tailles et prêt à l\'exportation.',
+                'product4_title': 'Piment de Nyungwe',
+                'product4_farm': 'Ferme d\'Épices Kamoi',
+                'product4_description': 'Piment de variétés rares cultivé dans la région de Nyungwe, caractérisé par sa chaleur moyenne et sa saveur unique qui mélange douceur et épices.',
+                
+                // Categories Section
+                'categories_title': 'Parcourir par Catégorie',
+                'categories_subtitle': 'Explorez une variété de produits agricoles rwandais classés par type',
+                'category1': 'Café et Thé',
+                'category2': 'Fruits Tropicaux',
+                'category3': 'Légumes',
+                'category4': 'Épices et Herbes',
+                
+                // Seller Section
+                'seller_section_title': 'Êtes-vous un Agriculteur ou un Producteur?',
+                'seller_section_text': 'Rejoignez notre plateforme aujourd\'hui et présentez vos produits aux acheteurs du monde entier. Nous vous fournissons les outils et le soutien nécessaires pour atteindre de nouveaux marchés et augmenter vos ventes.',
+                
+                // Footer
+                'footer_about': 'Une plateforme numérique intégrée qui vise à permettre aux agriculteurs rwandais d\'accéder directement aux marchés mondiaux, de faciliter les opérations d\'exportation et de maximiser les profits.',
+                'footer_quick_links': 'Liens Rapides',
+                'footer_services': 'Services',
+                'footer_service1': 'Commerce Électronique',
+                'footer_service2': 'Services d\'Exportation',
+                'footer_service3': 'Expédition et Logistique',
+                'footer_service4': 'Finance Agricole',
+                'footer_service5': 'Certificats de Qualité',
+                'footer_service6': 'Analyses et Rapports',
+                'footer_newsletter': 'Bulletin d\'Information',
+                'footer_newsletter_text': 'Abonnez-vous à notre bulletin d\'information pour recevoir les dernières mises à jour sur les opportunités d\'exportation et les tendances du marché.',
+                'newsletter_placeholder': 'Votre email',
+                'copyright': '&copy; 2025 Agriculture Rwandaise. Tous droits réservés.'
+            }
+        };
+        
+        // Set default language
+        let currentLang = 'ar';
+        let direction = 'rtl';
+        
+        // Function to update content based on selected language
+        function updateLanguage(langCode) {
+            currentLang = langCode;
+            
+            // Update text direction
+            direction = (langCode === 'ar') ? 'rtl' : 'ltr';
+            document.documentElement.setAttribute('lang', langCode);
+            document.documentElement.setAttribute('dir', direction);
+            
+            // Update current language display
+            document.querySelector('.current-language span[data-lang="current_lang"]').textContent = translations[langCode]['current_lang'];
+            
+            // Update all text elements with data-lang attribute
+            const elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (translations[langCode][key]) {
+                    element.textContent = translations[langCode][key];
+                }
+            });
+            
+            // Update placeholders
+            const placeholderElements = document.querySelectorAll('[data-lang-placeholder]');
+            placeholderElements.forEach(element => {
+                const key = element.getAttribute('data-lang-placeholder');
+                if (translations[langCode][key]) {
+                    element.placeholder = translations[langCode][key];
+                }
+            });
+            
+            // Adjust CSS properties that depend on direction
+            if (direction === 'ltr') {
+                // Convert RTL styles to LTR
+                document.querySelectorAll('.logo-icon, .farm-icon, .contact-icon, .footer-logo-icon').forEach(el => {
+                    el.style.marginLeft = '0';
+                    el.style.marginRight = '10px';
+                });
+                
+                document.querySelectorAll('nav ul li').forEach(el => {
+                    el.style.marginRight = '0';
+                    el.style.marginLeft = '1.5rem';
+                });
+                
+                document.querySelectorAll('.dropdown-content').forEach(el => {
+                    el.style.right = 'auto';
+                    el.style.left = '0';
+                });
+                
+                document.querySelectorAll('.auth-buttons button, .auth-buttons a').forEach(el => {
+                    el.style.marginRight = '0';
+                    el.style.marginLeft = '1rem';
+                });
+                
+                document.querySelectorAll('.footer-section h3::after').forEach(el => {
+                    if (el.style) {
+                        el.style.right = 'auto';
+                        el.style.left = '0';
+                    }
+                });
+                
+                document.querySelectorAll('.product-badge').forEach(el => {
+                    el.style.right = 'auto';
+                    el.style.left = '10px';
+                });
+                
+                document.querySelectorAll('.search-input').forEach(el => {
+                    el.style.borderRadius = '0 var(--border-radius) var(--border-radius) 0';
+                });
+                
+                document.querySelectorAll('.search-btn').forEach(el => {
+                    el.style.borderRadius = 'var(--border-radius) 0 0 var(--border-radius)';
+                });
+            } else {
+                // Revert to RTL styles
+                document.querySelectorAll('.logo-icon, .farm-icon, .contact-icon, .footer-logo-icon').forEach(el => {
+                    el.style.marginRight = '0';
+                    el.style.marginLeft = '10px';
+                });
+                
+                document.querySelectorAll('nav ul li').forEach(el => {
+                    el.style.marginLeft = '0';
+                    el.style.marginRight = '1.5rem';
+                });
+                
+                document.querySelectorAll('.dropdown-content').forEach(el => {
+                    el.style.left = 'auto';
+                    el.style.right = '0';
+                });
+                
+                document.querySelectorAll('.auth-buttons button, .auth-buttons a').forEach(el => {
+                    el.style.marginLeft = '0';
+                    el.style.marginRight = '1rem';
+                });
+                
+                document.querySelectorAll('.footer-section h3::after').forEach(el => {
+                    if (el.style) {
+                        el.style.left = 'auto';
+                        el.style.right = '0';
+                    }
+                });
+                
+                document.querySelectorAll('.product-badge').forEach(el => {
+                    el.style.left = 'auto';
+                    el.style.right = '10px';
+                });
+                
+                document.querySelectorAll('.search-input').forEach(el => {
+                    el.style.borderRadius = 'var(--border-radius) 0 0 var(--border-radius)';
+                });
+                
+                document.querySelectorAll('.search-btn').forEach(el => {
+                    el.style.borderRadius = '0 var(--border-radius) var(--border-radius) 0';
+                });
+            }
+        }
+        
+        // Add event listeners to language options
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageOptions = document.querySelectorAll('.language-option');
+            
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const langCode = this.getAttribute('data-lang-code');
+                    updateLanguage(langCode);
+                });
+            });
+        });
+    </script>
+<script>
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
+<script defer="True" src="js/script.js"></script></body>
+</html>
